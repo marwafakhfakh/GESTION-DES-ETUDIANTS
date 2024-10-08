@@ -1,0 +1,71 @@
+﻿@model IEnumerable<GESTIONDESETUDIANTS.Models.Student>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="text-center" style="color: #7CB9E8;">List of students</h1>
+
+<!-- Formulaire de recherche avec champ de texte pour le nom et liste déroulante pour les écoles -->
+<form class="form-inline my-4" asp-action="Search" asp-controller="Student">
+    <div class="input-group">
+        <input size="30" placeholder="Type a name" type="search" name="name" class="form-control" />
+
+        <!-- Liste déroulante pour sélectionner une école -->
+        <select asp-items="ViewBag.SchoolID" name="schoolid" class="form-select" style="width: 300px;">
+            <option value="">Select a school</option>
+        </select>
+
+        <button class="btn btn-outline-success" type="submit">Search</button>
+    </div>
+</form>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Add a new student</a>
+    <a asp-action="Index" asp-controller="Student" class="btn btn-secondary">All students</a>
+</p>
+
+<table class="table table-striped table-bordered table-hover mt-3">
+    <thead class="table-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.StudentName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Age)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BirthDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.School.SchoolName)
+            </th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StudentName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Age)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BirthDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.School.SchoolName)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.StudentId" class="btn btn-warning btn-sm">Edit</a>
+                    <a asp-action="Details" asp-route-id="@item.StudentId" class="btn btn-info btn-sm">Details</a>
+                    <a asp-action="Delete" asp-route-id="@item.StudentId" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+</div>

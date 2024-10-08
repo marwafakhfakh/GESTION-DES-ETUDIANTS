@@ -1,0 +1,48 @@
+﻿@model IEnumerable<GESTIONDESETUDIANTS.Models.School>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Créer Nouvelle École</a>
+</p>
+
+<div class="table-responsive">
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.SchoolName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SchoolAdress)
+                </th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SchoolName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SchoolAdress)
+                    </td>
+                    <td>
+                        <a class="btn btn-warning btn-sm" asp-action="Edit" asp-route-id="@item.SchoolID">Modifier</a>
+                        <a class="btn btn-info btn-sm" asp-action="Details" asp-route-id="@item.SchoolID">Détails</a>
+                        <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.SchoolID">Supprimer</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
