@@ -1,10 +1,12 @@
 ﻿using GESTIONDESETUDIANTS.Models;
 using GESTIONDESETUDIANTS.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GESTIONDESETUDIANTS.Controllers
 {
+	[Authorize]
 	public class SchoolController : Controller
 	{
 
@@ -16,6 +18,7 @@ namespace GESTIONDESETUDIANTS.Controllers
 		}
 
 		// GET: Schoolcs
+		[AllowAnonymous]
 		public ActionResult Index()
 		{
 			return View(SchoolRepository.GetAll());

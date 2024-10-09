@@ -256,3 +256,6 @@ D:\asp.net\GESTIONDESETUDIANTS\GESTIONDESETUDIANTS\bin\Debug\net8.0\Microsoft.As
 D:\asp.net\GESTIONDESETUDIANTS\GESTIONDESETUDIANTS\bin\Debug\net8.0\Microsoft.Extensions.Identity.Core.dll
 D:\asp.net\GESTIONDESETUDIANTS\GESTIONDESETUDIANTS\bin\Debug\net8.0\Microsoft.Extensions.Identity.Stores.dll
 D:\asp.net\GESTIONDESETUDIANTS\GESTIONDESETUDIANTS\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
+D:\asp.net\GESTIONDESETUDIANTS\GESTIONDESETUDIANTS\obj\Debug\net8.0\GESTIONDESETUDIANTS.sourcelink.json
+D:\asp.net\GESTIONDESETUDIANTS\GESTIONDESETUDIANTS\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.dll
+D:\asp.net\GESTIONDESETUDIANTS\GESTIONDESETUDIANTS\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
