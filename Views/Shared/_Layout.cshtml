@@ -13,26 +13,34 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">GESTIONDESETUDIANTS</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="collapsibleNavbar">
-                    <ul class="navbar-nav ml-auto">
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <!-- Liens toujours visibles pour Home, Student, School -->
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Student" asp-action="Index">Student</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="School" asp-action="Index">School</a>
+                        </li>
+                    </ul>
 
-                        @*If the user is signed-in display Logout link*@
-
+                    <ul class="navbar-nav ms-auto">
+                        <!-- Liens Login/Logout alignés à droite -->
                         @if (SignInManager.IsSignedIn(User))
                         {
+                            <!-- Utilisateur connecté -->
                             <li class="nav-item">
-
-                                <form method="post" asp-controller="account" asp-action="logout">
-                                    <button type="submit" style="width:auto"
-                                            class="nav-link btn btn-link py-0">
-
+                                <form method="post" asp-controller="Account" asp-action="Logout" class="d-inline">
+                                    <button type="submit" class="nav-link btn btn-link py-0 text-dark">
                                         Logout @User.Identity.Name
                                     </button>
                                 </form>
@@ -40,25 +48,20 @@
                         }
                         else
                         {
+                            <!-- Utilisateur non connecté -->
                             <li class="nav-item">
-
-                                <a class="nav-link" asp-controller="Account" asp-action="Register">
-
-                                    Register
-                                </a>
+                                <a class="nav-link" asp-controller="Account" asp-action="Register">Register</a>
                             </li>
                             <li class="nav-item">
-
-                                <a class="nav-link" asp-controller="Account" asp-action="Login">
-
-                                    Login
-                                </a>
+                                <a class="nav-link" asp-controller="Account" asp-action="Login">Login</a>
                             </li>
                         }
                     </ul>
                 </div>
+            </div>
         </nav>
     </header>
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -70,6 +73,7 @@
             &copy; 2024 - GESTIONDESETUDIANTS - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

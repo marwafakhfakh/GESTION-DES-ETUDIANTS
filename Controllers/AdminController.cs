@@ -24,14 +24,10 @@ namespace GESTIONDESETUDIANTS.Controllers
 		}
 		[HttpPost]
 
-		public async Task<IActionResult> CreateRole
-
-		(CreateRoleViewModel model)
+		public async Task<IActionResult> CreateRole(CreateRoleViewModel model)
 
 		{
-			if
-
-		(ModelState.IsValid)
+			if(ModelState.IsValid)
 
 			{
 
@@ -45,11 +41,11 @@ namespace GESTIONDESETUDIANTS.Controllers
 
 				{
 
-					return RedirectToAction
+					return RedirectToAction("Index", "Home");
 
-					("Index", "Home");
 
-				}
+
+                }
 				foreach
 
 				(IdentityError error in result.Errors
@@ -155,6 +151,34 @@ namespace GESTIONDESETUDIANTS.Controllers
                     ModelState.AddModelError("", error.Description);
                 }
                 return View(model);
+            }
+        }
+        [HttpPost]
+        public async Task<IActionResult> DeleteRole(string id)
+
+        {
+            var role = await roleManager.FindByIdAsync(id);
+            if (role == null)
+            {
+
+                ViewBag.ErrorMessage = $"Role with Id = {id} cannot be found";
+
+                return View("NotFound");
+            }
+            else
+            {
+                var result = await roleManager.DeleteAsync(role);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("ListRoles");
+                }
+
+                foreach (var error in result.Errors)
+
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+                return View("ListRoles");
             }
         }
     }
