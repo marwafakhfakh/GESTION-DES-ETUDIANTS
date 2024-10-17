@@ -1,4 +1,5 @@
 ﻿using GESTIONDESETUDIANTS.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -11,6 +12,7 @@ namespace GESTIONDESETUDIANTS.Controllers
         // GET: AccountController
         private readonly UserManager<IdentityUser> userManager;
         private readonly SignInManager<IdentityUser>
+
         signInManager;
         public AccountController(UserManager<IdentityUser>
         userManager, SignInManager<IdentityUser> signInManager)
@@ -170,6 +172,11 @@ namespace GESTIONDESETUDIANTS.Controllers
 			{
 				return View();
 			}
+		}
+		[AllowAnonymous]
+		public IActionResult AccessDenied()
+		{
+			return View();
 		}
 	}
 }

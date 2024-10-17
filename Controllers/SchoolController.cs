@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GESTIONDESETUDIANTS.Controllers
 {
-	[Authorize]
-	public class SchoolController : Controller
+    [Authorize(Roles = "Admin,Manager")]
+    public class SchoolController : Controller
 	{
 
 		readonly ISchoolRepository SchoolRepository;

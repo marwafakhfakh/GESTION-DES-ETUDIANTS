@@ -1,5 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
 
 <!DOCTYPE html>
 <html lang="en">
@@ -21,16 +22,37 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto">
-                        <!-- Liens toujours visibles pour Home, Student, School -->
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Student" asp-action="Index">Student</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="School" asp-action="Index">School</a>
-                        </li>
+                        <!-- Vérification si l'utilisateur est connecté -->
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            var currentUser = UserManager.GetUserAsync(User).Result;
+                            var isAdmin = UserManager.IsInRoleAsync(currentUser, "Admin").Result;
+                            var isUser = UserManager.IsInRoleAsync(currentUser, "User").Result;
+
+                            <!-- Liens visibles pour tous les utilisateurs -->
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Student" asp-action="Index">Student</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="School" asp-action="Index">School</a>
+                            </li>
+
+                            <!-- Si l'utilisateur est Admin -->
+                            if (isAdmin)
+                            {
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Administration</a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="CreateRole">Create Role</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="ListRoles">List Roles</a>
+                                    </div>
+                                </li>
+                            }
+                        }
                     </ul>
 
                     <ul class="navbar-nav ms-auto">
@@ -73,7 +95,7 @@
             &copy; 2024 - GESTIONDESETUDIANTS - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
-
+    <script src="~/js/CustomScript.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

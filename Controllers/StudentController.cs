@@ -1,5 +1,6 @@
 ﻿using GESTIONDESETUDIANTS.Models;
 using GESTIONDESETUDIANTS.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -7,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GESTIONDESETUDIANTS.Controllers
 {
+    [Authorize(Roles = "Admin,Manager")]
     public class StudentController : Controller
     {
         private readonly IStudentRepository studentRepository;
@@ -20,6 +22,7 @@ namespace GESTIONDESETUDIANTS.Controllers
             _context = context;
             _context = context;
         }
+        [AllowAnonymous]
 
         // GET: StudentController
         public IActionResult Index()

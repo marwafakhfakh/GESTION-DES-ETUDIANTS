@@ -13,6 +13,14 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "D:\\asp.net\\GESTIONDESETUDIANTS\\GESTIONDESETUDIANTS\\wwwroot\\images\\noaccess.png",
+      "PackagePath": "staticwebassets\\images\\noaccess.png"
+    },
+    {
+      "Id": "D:\\asp.net\\GESTIONDESETUDIANTS\\GESTIONDESETUDIANTS\\wwwroot\\js\\CustomScript.js",
+      "PackagePath": "staticwebassets\\js\\CustomScript.js"
+    },
+    {
       "Id": "D:\\asp.net\\GESTIONDESETUDIANTS\\GESTIONDESETUDIANTS\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
